@@ -33,13 +33,13 @@
       <label for="browser_neighborhood">Neighborhood</label>
       <input id="browser_neighborhood" type="text" name="query_neighborhood" value="<%= @the_venue.neighborhood %>" placeholder="Enter a neighborhood...">
 
-      <button>Update venue</button>
+      <button type="submit">Update venue</button>
     </form>
   </dd>
 
   <dt>Delete venue</dt>
   <dd>
-    <a href="/delete_venue/<% @the_venue.id %>">
+    <a href="/delete_venue/<%= @the_venue.id %>">
       Delete this venue
     </a>
   </dd>

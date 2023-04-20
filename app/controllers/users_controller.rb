@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+  def main
+   redirect_to("/users")
+  end
   def all_users
     matching_users = User.all
     @users = matching_users.order(:created_at)
@@ -18,7 +20,7 @@ class UsersController < ApplicationController
   def create
     insert_username = params.fetch("insert_username")
     user = User.new
-    user.username = params.fetch("query_username")
+    user.username = insert_username
     user.save
     
     redirect_to("/users/#{user.username}")
@@ -26,14 +28,14 @@ class UsersController < ApplicationController
   
   def update
     user_name = params.fetch("user_name")
-    matching_users = User.where({ :id => user_name })
+    matching_users = User.where({ :username => user_name })
     the_user = matching_users.at(0)
 
     query_username = params.fetch("query_username")
     
     the_user.username = query_username
     the_user.save
-    redirect_to("/users/#{user.username}")
+    redirect_to("/users/#{the_user.username}")
   end
 
 end
